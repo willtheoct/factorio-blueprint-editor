@@ -347,5 +347,37 @@ export class Editor {
         registerAction('changeActiveQuickbar', 'x').bind({
             press: () => G.UI.quickbarPanel.changeActiveQuickbar(),
         })
+        registerAction('flip X', ).bind({
+            press: ()=> {
+                var $.addeventlistener('onmousedown', (mouse)=>{
+                var area = document.addelement('green box');
+                    area.left=min(mouse.x);
+                    $.addeventlistener('onmousemove'),(mouse)=>{
+                        area.bottomright=mouse.position;
+                    }
+                    $.addeventlistener('onmouseup'), (mouse)=>{
+                        document.removechild(area);
+                        for (var i=0;i<entities.count;i++){
+                            entities[i].position[0]-=abs(area.right-area.left)/2-entities[i].position;
+                        }
+                    }
+                 )
+            }
+        registerAction('flip Y', ).bind({
+            press: ()=> {
+                var $.addeventlistener('onmousedown', (mouse)=>{
+                var area = document.addelement('green box');
+                    area.topleft=mouse.position;
+                    $.addeventlistener('onmousemove'),(mouse)=>{
+                        area.bottom=mouse.position;
+                    }
+                    $.addeventlistener('onmouseup'), (mouse)=>{
+                        document.removechild(area);
+                        for (var i=0;i<entities.count;i++){
+                            entities[i].position[1]-=abs(area.bottomright-area.topleft[1])/2;
+                        }
+                    }
+                 )
+            }
     }
 }
